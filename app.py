@@ -69,3 +69,5 @@ def create():
             return redirect(url_for('hero_hall'))
 
     return render_template('create.html')
+
+app.run(debug=False)
