@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} 🦸‍♀️Heroes!🦸‍♂️ {% endblock %}</h1>
+    {% for hero in deserialized_json %}
+        <div class='hero'>
+            <h3>{{ hero['superhero'] }}</h3>
+            <li>{{ hero['publisher'] }}</li>
+            <li>{{ hero['first_appearance'] }}</li>
+            <li>{{ hero['characters'] }}</li>
+    {% endfor %}
+{% endblock %}

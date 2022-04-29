@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Add a New Hero {% endblock %}</h1>
+    <form method="post">
+        <label for="title">New Hero</label>
+        <br>
+        <input type="text" name="superhero"
+               placeholder="Hero Name"
+               value="{{ request.form['superhero'] }}"></input>
+               <br><br>
+        <input type="text" name="publisher"
+               placeholder="Publisher"
+               value="{{ request.form['publisher'] }}"></input>
+               <br><br>
+        <input type="text" name="alter_ego"
+               placeholder="Alter Ego"
+               value="{{ request.form['alter_ego'] }}"></input>
+               <br><br>
+        <input type="text" name="first_appearance"
+               placeholder="First Appearance"
+               value="{{ request.form['first_appearance'] }}"></input>
+               <br><br>
+        <input type="text" name="characters"
+               placeholder="Characters"
+               value="{{ request.form['characters'] }}"></input>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
