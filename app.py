@@ -34,7 +34,7 @@ deserialized_json = json.loads(data)
 # decorator
 @app.route('/')
 def index():
-    return 'Hello!'
+    return 'Hello! Other default page is at the /herohall endpoint!'
     
 @app.route("/herohall")
 def hero_hall():
@@ -51,7 +51,7 @@ def get_hero(superhero):
     return "Hero not found..."
 
 
-@app.route('/create/', methods=('GET', 'POST'))
+@app.route('/create/', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
         superhero = request.form['superhero']
@@ -70,4 +70,4 @@ def create():
 
     return render_template('create.html')
 
-app.run(debug=False)
+app.run(debug=True)
