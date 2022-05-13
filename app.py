@@ -48,8 +48,6 @@ def hero_hall():
 def get_hero(superhero):
     for hero in deserialized_json:
         if (hero['superhero'].lower() == superhero.lower()):
-            print(hero['superhero'].lower())
-            print(superhero.lower())
             return json.dumps(hero)
     return "Hero not found..."
 
@@ -76,8 +74,6 @@ def create():
 
 @app.route('/bored/<parameters>', methods=['GET'])
 def bored_with_parameters(parameters=''):
-    print('in function')
-    print(parameters)
     deserialized_json = refresh_activity(parameters)
     
     return render_template('bored.html', deserialized_json=deserialized_json)
@@ -91,8 +87,6 @@ def bored():
 
 
 def refresh_activity(parameters=''):
-    print("in refresh")
-    print(parameters)
     url = 'http://www.boredapi.com/api/activity?' + parameters
     response = requests.get(url)
     data = response.json()
