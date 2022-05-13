@@ -1,7 +1,9 @@
 # Directions!
 '''
-1. install Flask - open terminal in VS CODE 
-Run this command: pip install Flask
+1. install Flask and requests - open terminal in VS CODE 
+Run this command: 
+pip install Flask
+pip install requests
 
 to build to this web service quickly I am using FLASK
 a lightweight web framework - meaning a third party python library used for 
@@ -9,6 +11,7 @@ developing web applications
 need a server in place to handle request in response cycle
 '''
 from flask import Flask, render_template, request, url_for, flash, redirect
+import requests
 import json
 
 
@@ -69,5 +72,31 @@ def create():
             return redirect(url_for('hero_hall'))
 
     return render_template('create.html')
+
+
+@app.route('/bored/<parameters>', methods=['GET'])
+def bored_with_parameters(parameters=''):
+    print('in function')
+    print(parameters)
+    deserialized_json = refresh_activity(parameters)
+    
+    return render_template('bored.html', deserialized_json=deserialized_json)
+
+
+@app.route('/bored/', methods=['GET'])
+def bored():
+    deserialized_json = refresh_activity()
+    
+    return render_template('bored.html', deserialized_json=deserialized_json)
+
+
+def refresh_activity(parameters=''):
+    print("in refresh")
+    print(parameters)
+    url = 'http://www.boredapi.com/api/activity?' + parameters
+    response = requests.get(url)
+    data = response.json()
+    return data
+
 
 app.run(debug=True)
